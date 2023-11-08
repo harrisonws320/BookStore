@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 //INSTRUCTOR BLOCK 1 - 4.E
-namespace GadgetStore.UI.MVC.Models
+namespace BookStore.UI.MVC.Models
 {
     public class CreateRoleViewModel
     {
