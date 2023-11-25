@@ -130,15 +130,15 @@ img.animated.pulse {
 
 /*** Hero Header ***/
 .hero-header {
-    position: relative;
+   /* position: relative;
     margin-top: -85px;
     padding-top: 12rem;
-    padding-bottom: 6rem;
-    background: url(../img/bg.png) center center no-repeat;
+    padding-bottom: 6rem;*/
+    background: url(../img/bookz.JPG) center center no-repeat;
     background-size: cover;
 }
 
-.hero-header::before {
+/*.hero-header::before {
     position: absolute;
     content: "";
     width: 100%;
@@ -157,7 +157,7 @@ img.animated.pulse {
 .hero-header .breadcrumb-item+.breadcrumb-item::before {
     color: var(--bs-light);
 }
-
+*/
 
 /*** Feature ***/
 .feature-item::before {
