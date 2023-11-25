@@ -22,7 +22,7 @@ namespace BookStore.DATA.EF.Models
         public int ConditionId { get; set; }
         public decimal? BookPrice { get; set; }
         public int? Isbn { get; set; }
-        public string? Image { get; set; }
+        public string? BookImage { get; set; }
         public short? UnitsInStock { get; set; }
 
         public virtual Author? Author { get; set; }
