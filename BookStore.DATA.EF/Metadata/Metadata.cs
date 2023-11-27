@@ -20,7 +20,7 @@ namespace BookStore.DATA.EF.Models/*.Metadata*/
 
         [MaxLength(15, ErrorMessage = "First Name cannot exceed 50 characters")]
         [Display(Name = "Author First Name")]
-        public string AuthorFname { get; set; } 
+        public string? AuthorFname { get; set; } 
 
         [Required(ErrorMessage = "Last Name is required")]
         [MaxLength(15, ErrorMessage = "Last Name cannot exceed 50 characters")]
@@ -105,7 +105,7 @@ namespace BookStore.DATA.EF.Models/*.Metadata*/
 
         [StringLength(75)]
         [Display(Name = "Image")]
-        public string? BookImage { get; set; }
+        public string? Image { get; set; }
 
         [Display(Name = "Units in Stock")]
         public short? UnitsInStock { get; set; }

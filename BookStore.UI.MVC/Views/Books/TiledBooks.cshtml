@@ -1,0 +1,101 @@
+﻿@model IEnumerable<BookStore.DATA.EF.Models.Book>
+@* @using X.PagedList.Mvc.Core;
+@using X.PagedList; *@
+@{
+    ViewData["Title"] = "Tiled Books";
+}
+
+@section Styles {
+    <link href="~/css/PagedList.css" rel="stylesheet" />
+}
+
+<section class="container-fluid py-5">
+    <div class="container">
+        <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="text-primary mb-3"><span class="fw-light text-dark">Seminal Texts</span>For Your Shelf</h1>
+            <p align="center">
+
+              @*   @if (User.IsInRole("Admin"))
+                { *@
+                    <span>
+                        <a asp-action="Create">Add New Book</a> |
+                    </span>
+                @* } *@
+                <a asp-action="Index">Table View</a>
+            </p>
+        </div>
+        <div class="row">
+            @*
+            Search - Step 1
+            - add the <form>
+            - add the <input> textbox
+            - add the <input> submit
+            - Add if() to display # results and search term
+            *@
+            <div class="col-md-6 offset-3">
+                <form asp-action="TiledBooks" method="get">
+                    <!-- url.com/page?param=value&param2=value2 -->
+                    <label for="authorId" class="control-label d-block text-center">Author</label>
+                    <select name="authorId" class="form-control text-center mb-3"
+                            asp-items="@ViewBag.AuthorId">
+                        <option value="0">[Choose an Author]</option>
+                    </select>
+                    <input type="text" name="searchTerm" class="form-control text-center" value="@ViewBag.SearchTerm" placeholder="Search Books..." />
+                    <button type="submit" class="btn btn-primary d-block mx-auto w-50">GO!</button>
+                    <a asp-action="TiledBooks" class="btn btn-secondary d-block mx-auto mt-2 w-50">Clear</a>
+                </form>
+                @if (ViewBag.NbrResults != null)
+                {
+                    <p class="mt-5 p-2 alert-warning text-center">
+                        Showing @ViewBag.NbrResults result@(ViewBag.NbrResults == 1 ? "" : "s") for '@ViewBag.SearchTerm'...
+                    </p>
+
+                }
+            </div>
+
+
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
+                    <div class="box h-100">
+                        <div class="option_container">
+                            <div class="options">
+                                <a asp-action="Details" asp-route-id="@item.BookId" class="option1">
+                                    @item.Title
+                                </a>
+                                <a asp-action="AddToCart" asp-controller="ShoppingCart" asp-route-id="@item.BookId" class="option2">
+                                    Add To Cart
+                                </a>
+                            </div>
+                        </div>
+                        <div class="img-box">
+                            <img src="~/images/@item.Image" alt="@item.Title">
+                        </div>
+                        <div class="detail-box">
+                            <h5>
+                                @item.Title
+                            </h5>
+                            <h6>
+                                @Html.DisplayFor(modelItem => item.BookPrice)
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            }
+            </div>
+            </div>
+            </section>
+       @*  </div>
+        <div class="row mt-5">
+            <div class="w-50 mx-auto text-center">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                <div class="w-100">
+                    @Html.PagedListPager(Model, page => Url.Action("TiledProducts", new {
+                    page,
+                    searchTerm = ViewBag.SearchTerm,
+                    categoryId = ViewBag.CategoryId
+                    }))
+                </div>
+            </div>
+        </div>
+    </div> *@

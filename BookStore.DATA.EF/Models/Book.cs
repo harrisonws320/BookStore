@@ -22,14 +22,14 @@ namespace BookStore.DATA.EF.Models
         public int ConditionId { get; set; }
         public decimal? BookPrice { get; set; }
         public int? Isbn { get; set; }
-        public string? BookImage { get; set; }
+        public string? Image { get; set; }
         public short? UnitsInStock { get; set; }
 
         public virtual Author? Author { get; set; }
-        public virtual Condition Condition { get; set; } = null!;
-        public virtual Genre Genre { get; set; } = null!;
+        public virtual Condition? Condition { get; set; }
+        public virtual Genre? Genre { get; set; }
         public virtual Publisher? Publisher { get; set; }
-        public virtual Type Type { get; set; } = null!;
+        public virtual Type? Type { get; set; } 
         public virtual ICollection<OrderBook> OrderBooks { get; set; }
     }
 }

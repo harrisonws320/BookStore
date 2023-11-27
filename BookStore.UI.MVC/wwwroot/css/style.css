@@ -138,11 +138,11 @@ img.animated.pulse {
     background-size: cover;*/
     width: 100%;
     height: 100vh;
-    background: url("../img/bookz.JPG") right 100% bottom 10%;
+    background: url("../img/BookStore.JPG") right 100% bottom 10%;
     background-size: cover;
 }
 
-/*.hero-header::before {
+.hero-header::before {
     position: absolute;
     content: "";
     width: 100%;
@@ -160,7 +160,7 @@ img.animated.pulse {
 
 .hero-header .breadcrumb-item+.breadcrumb-item::before {
     color: var(--bs-light);
-}*/
+}
 
 
 /*** Feature ***/

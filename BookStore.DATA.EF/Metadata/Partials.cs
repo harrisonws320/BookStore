@@ -21,8 +21,8 @@ namespace BookStore.DATA.EF.Models/*.Metadata*/
     [ModelMetadataType(typeof(BookMetadata))]
     public partial class Book 
     {
-        [NotMapped]
-        public IFormFile? Image { get; set; }
+        //[NotMapped]
+        //public IFormFile? Image { get; set; }
 
     }
 

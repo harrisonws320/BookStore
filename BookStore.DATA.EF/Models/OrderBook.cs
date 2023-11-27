@@ -11,7 +11,7 @@ namespace BookStore.DATA.EF.Models
         public int? Quantity { get; set; }
         public decimal? BookPrice { get; set; }
 
-        public virtual Book Book { get; set; } = null!;
-        public virtual Order Order { get; set; } = null!;
+        public virtual Book? Book { get; set; }
+        public virtual Order? Order { get; set; }
     }
 }

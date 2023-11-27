@@ -18,7 +18,7 @@ namespace BookStore.DATA.EF.Models
         public string? ShipState { get; set; }
         public string ShipPostalCode { get; set; } = null!;
 
-        public virtual Buyer Buyer { get; set; } = null!;
+        public virtual Buyer? Buyer { get; set; }
         public virtual ICollection<OrderBook> OrderBooks { get; set; }
     }
 }
