@@ -111,6 +111,7 @@ namespace BookStore.DATA.EF.Models/*.Metadata*/
         public short? UnitsInStock { get; set; }
 
         [ForeignKey("AuthorId")]
+        [Display(Name = "Author")]
         public virtual Author? Author { get; set; }
 
         [ForeignKey("ConditionId")]
@@ -134,15 +135,25 @@ namespace BookStore.DATA.EF.Models/*.Metadata*/
         [Required(ErrorMessage = "Buyer ID is required")]
         public string BuyerId { get; set; } = null!;
 
-        [Required(ErrorMessage = "First Name is required")]
-        [MaxLength(20, ErrorMessage = "First Name cannot exceed 20 characters")]
-        [Display(Name = "Buyer First Name")]
+        [Required]
+        [Display(Name = "First Name")]
+        [StringLength(20)]
         public string BuyerFname { get; set; } = null!;
 
-        [Required(ErrorMessage = "Last Name is required")]
-        [MaxLength(20, ErrorMessage = "Last Name cannot exceed 20 characters")]
-        [Display(Name = "Buyer Last Name")]
+        [Required]
+        [Display(Name = "Last Name")]
+        [StringLength(20)]
         public string BuyerLname { get; set; } = null!;
+
+        //[Required(ErrorMessage = "First Name is required")]
+        //[MaxLength(20, ErrorMessage = "First Name cannot exceed 20 characters")]
+        //[Display(Name = "Buyer First Name")]
+        //public string BuyerFname { get; set; } = null!;
+
+        //[Required(ErrorMessage = "Last Name is required")]
+        //[MaxLength(20, ErrorMessage = "Last Name cannot exceed 20 characters")]
+        //[Display(Name = "Buyer Last Name")]
+        //public string BuyerLname { get; set; } = null!;
 
         [Required(ErrorMessage = "Address is required")]
         public string Address { get; set; } = null!;

@@ -1,0 +1,98 @@
+﻿@model Dictionary<int, BookStore.UI.MVC.Models.CartItemViewModel>
+
+@{
+    ViewData["Title"] = "Cart";
+}
+<section class="container-fluid py-5">
+    <div class="container">
+        <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="text-primary mb-3 bg-white border-radius 10"><span class="fw-light text-dark"><strong>Your</strong></span>Cart</h1>
+          @*   <h1 class="text-primary mb-3"><span class="fw-light text-dark">Your</span> Cart</h1> *@
+        
+         </div>
+        <p align="center">
+            <a asp-action="TiledBooks" asp-controller="Books" class="btn btn-info">
+                Back to Shopping
+            </a>
+        </p>
+     </div>
+        @if (!Model.Any())
+        {
+            <p class="alert alert-warning text-center">
+                @ViewBag.Message
+            </p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Book</th>
+                        <th>Quantity</th>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Values)
+                    {
+                        <tr>
+                            <td>
+                                <img src="~/img/t_@item.Book.Image">
+                            </td>
+                            <td>
+                                @* @Html.DisplayFor(modelItem => item.Qty)
+                        <input type="button" value="Update Cart" class="btn btn-primary" /> *@
+                                <form asp-action="UpdateCart">
+                                    <input type="hidden" name="bookId" value="@item.Book.BookId">
+                                    <input type="number" value="@item.Qty" name="qty" min="0" class="form-control mx-auto text-center w-50">
+                                    <button type="submit" class="btn btn-primary btn-sm col-md-6 offset-md-3">Update Cart</button>
+                                </form>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Book.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Book.BookPrice)
+                            </td>
+                            <td>
+                                @($"{item.Qty * item.Book.BookPrice:c}")
+                            </td>
+                            <td>
+                                @*  <a href="#" class="btn btn-danger">Remove From Cart</a> *@
+                                <a asp-action="RemoveFromCart" asp-route-id="@item.Book.BookId" class="btn btn-danger">
+                                    Remove From Cart
+                                </a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="alert alert-success text-center">
+
+                <p>
+                    Your total before taxes and shipping is @($"{Model.Values.Sum(item => item.Qty * item.Book.BookPrice):c}")
+                </p>
+
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <p>
+                        <a asp-action="SubmitOrder" class="btn btn-primary">Submit Order</a>
+                    </p>
+                    <p>
+                        <a asp-action="Checkout" class="btn btn-secondary">Checkout</a>
+                    </p>
+                }
+                else
+                {
+                    <p>Please login to place this order.</p>
+                }
+
+            </div>
+        }
+    
+</section>

@@ -1,0 +1,53 @@
+﻿@model BookStore.UI.MVC.Models.ContactViewModel
+@{
+    ViewData["Title"] = "Contact Me";
+}
+<section class="container-fluid py-5">
+    <div class="container">
+        <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="text-primary mb-3"><span class="fw-light text-dark">If You Have Any Questions,</span> Feel Free to Contact Me</h1>
+        </div>  
+     </div>
+</section>
+
+<!-- Contact Start -->
+       <div class="row g-5">
+            <div class="col-lg-7 wow fadeIn" data-wow-delay="0.1s">
+                @* <div class="wow fadeIn" data-wow-delay="0.3s"> *@
+        <form asp-action="Contact">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <div class="text-danger text-center mb-3">
+                    <span asp-validation-for="Name"></span>
+                </div>
+            </div>
+            <div class="form-floating">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <div class="text-danger text-center mb-3">
+                    <span asp-validation-for="Email"></span>
+                </div>
+            </div>
+            <div class="form-floating">
+                <label asp-for="Subject" class="control-label"></label>
+                <input asp-for="Subject" class="form-control" />
+                <div class="text-danger text-center mb-3">
+                    <span asp-validation-for="Subject"></span>
+                </div>
+            </div>
+            <div class="form-floating">
+                <label asp-for="Message" class="control-label"></label>
+                <textarea asp-for="Message" class="form-control"></textarea>
+                <div class="text-danger text-center mb-3">
+                    <span asp-validation-for="Message"></span>
+                </div>
+            </div>
+            <div class="form-floating text-center">
+                <input type="submit" value="Submit" class="btn btn-primary btn-lg w-100 text-center d-inline-block" />
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Contact End -->

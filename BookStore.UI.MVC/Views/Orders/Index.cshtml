@@ -1,14 +1,15 @@
 ﻿@model IEnumerable<BookStore.DATA.EF.Models.Order>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Orders";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<section class="product_section layout_padding gray-section py-4">
+    <div class="heading_container heading_center">
+        <h2><span><em>@ViewBag.Title</em></span></h2>
+    </div>
+    <hr />
+</section>
 <table class="table">
     <thead>
         <tr>

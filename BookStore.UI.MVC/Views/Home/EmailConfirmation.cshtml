@@ -1,0 +1,47 @@
+﻿@model BookStore.UI.MVC.Models.ContactViewModel
+@{
+    ViewData["Title"] = "Email Confirmation";
+}
+<section class="container-fluid py-5">
+    <div class="container">
+        <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="text-primary mb-3"><span class="fw-light text-dark">Email</span> Confirmation</h1>
+        </div>
+    </div>
+</section>
+
+@* <--Email Confirmation Section--> *@
+
+<div class="row g-5">
+<div class="col-lg-7 wow fadeIn" data-wow-delay="0.1s">
+        <div class="info-box">
+            <i class="bx bx-check-circle"></i>
+            <h3>Message Sent!</h3>
+            <p>
+                Thank you for contacting me! I'll be sure to respond to
+                your message using your provided email address, @Model.Email, ASAP!
+            </p>
+
+            <br />
+
+            <div class="col-lg-7 wow fadeIn" data-wow-delay="0.1s">
+                <p>
+                    You sent the following message on
+                    @DateTime.Now.Date.ToShortDateString() at
+                    @DateTime.Now.ToShortTimeString() :
+                </p>
+            </div>
+
+            <br />
+
+            <div class="col-lg-7 wow fadeIn" data-wow-delay="0.1s">
+                <p>
+                    <em>@Model.Message</em>
+                </p>
+            </div>
+
+    </div>
+</div>
+</div>
+@* <--End Email Confirmation Section--> *@
+

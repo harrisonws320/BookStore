@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BookStore.DATA.EF.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookStore.UI.MVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class PublishersController : Controller
     {
         private readonly BookStoreContext _context;

@@ -16,21 +16,33 @@ namespace BookStore.DATA.EF.Models/*.Metadata*/
     //}
 
     [ModelMetadataType(typeof(AuthorMetadata))]
-    public partial class Author { /* custom properties here */ }
+    public partial class Author 
+    {
+        [Display(Name = "Name")]
+        public string Name => AuthorFname + " " + AuthorLname;
+    }
 
     [ModelMetadataType(typeof(BookMetadata))]
     public partial class Book 
     {
-        //[NotMapped]
-        //public IFormFile? Image { get; set; }
+        [NotMapped]
+        public IFormFile? ImageFile { get; set; }
 
     }
 
     [ModelMetadataType(typeof(BuyerMetadata))]
-    public partial class Buyer { }
+    public partial class Buyer 
+    {
+        [Display(Name = "Full Name")]
+        public string FullName => BuyerFname + " " + BuyerLname;
+    }
 
     [ModelMetadataType(typeof(ConditionMetadata))]
-    public partial class Condition { }
+    public partial class Condition 
+    { 
+
+    
+    }
 
     [ModelMetadataType(typeof(GenreMetadata))]
     public partial class Genre { } 

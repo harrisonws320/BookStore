@@ -28,7 +28,7 @@ img.animated.pulse {
 /*** Button ***/
 .btn {
     font-weight: 500;
-    transition: .5s;
+    transition: all 0.2s;
 }
 
 .btn.btn-primary {
@@ -69,17 +69,17 @@ img.animated.pulse {
 }
 
 .navbar {
-    padding: 11px 0 !important;
+    padding: 10px 0 !important;
     height: 85px;
 }
 
 .navbar .navbar-nav .nav-link {
-    margin-right: 45px;
+    margin-right: 47px;
     padding: 0;
     color: var(--bs-dark);
-    font-weight: 500;
+    font-weight: 700;
     transition: .5s;
-    outline: none;
+   
 }
 
 .navbar .navbar-nav .nav-link:hover,
@@ -90,16 +90,18 @@ img.animated.pulse {
 .navbar .dropdown-toggle::after {
     border: none;
     content: "\f107";
-    font-family: "Font Awesome 5 Free";
+   /* font-family: "Font Awesome 5 Free";*/
+   font-family: "Georgia";
     font-weight: 900;
     vertical-align: middle;
     margin-left: 8px;
+    margin-right: 1px;
 }
 
 @media (max-width: 991.98px) {
     .navbar .navbar-nav {
         padding: 0 15px;
-        background: var(--bs-primary);
+        /*background: var(--bs-primary);*/
     }
 
     .navbar .navbar-nav .nav-link  {
@@ -138,9 +140,26 @@ img.animated.pulse {
     background-size: cover;*/
     width: 100%;
     height: 100vh;
-    background: url("../img/BookStore.JPG") right 100% bottom 10%;
+    background: url("../img/bookHomePage.jpg") right 100% bottom 10%;
     background-size: cover;
 }
+
+/*book-container .h7, h7 {
+    font-weight: bolder;
+    background-color: #f8f9fa;*/ /* Set your desired background color */
+    /*border-radius: 10px;*/ /* Set the border radius for rounded corners */
+    /*padding: 7px;*/ /* Add padding for space inside the container */
+    /*border: 1px solid #ced4da;*/ /* Set the border color */
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/ /* Add a subtle box shadow for a frame effect */
+/*}
+
+.book-container .h2, h2 {
+    background-color: #f8f9fa;*/ /* Set your desired background color */
+    /*border-radius: 10px;*/ /* Set the border radius for rounded corners */
+    /*padding: 20px;*/ /* Add padding for space inside the container */
+    /*border: 1px solid #ced4da;*/ /* Set the border color */
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/ /* Add a subtle box shadow for a frame effect */
+/*}*/
 
 .hero-header::before {
     position: absolute;
@@ -254,7 +273,7 @@ img.animated.pulse {
 
 .product-item:hover a.btn {
     color: var(--bs-white);
-    background: var(--bs-primary);
+    background: var(--bs-info);
 }
 
 

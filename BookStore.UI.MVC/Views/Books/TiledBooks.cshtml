@@ -35,11 +35,11 @@
             <div class="col-md-6 offset-3">
                 <form asp-action="TiledBooks" method="get">
                     <!-- url.com/page?param=value&param2=value2 -->
-                    <label for="authorId" class="control-label d-block text-center">Author</label>
+                    @* <label for="authorId" class="control-label d-block text-center">Author</label>
                     <select name="authorId" class="form-control text-center mb-3"
                             asp-items="@ViewBag.AuthorId">
                         <option value="0">[Choose an Author]</option>
-                    </select>
+                    </select> *@
                     <input type="text" name="searchTerm" class="form-control text-center" value="@ViewBag.SearchTerm" placeholder="Search Books..." />
                     <button type="submit" class="btn btn-primary d-block mx-auto w-50">GO!</button>
                     <a asp-action="TiledBooks" class="btn btn-secondary d-block mx-auto mt-2 w-50">Clear</a>
@@ -62,14 +62,14 @@
                             <div class="options">
                                 <a asp-action="Details" asp-route-id="@item.BookId" class="option1">
                                     @item.Title
-                                </a>
+                                </a>  |
                                 <a asp-action="AddToCart" asp-controller="ShoppingCart" asp-route-id="@item.BookId" class="option2">
                                     Add To Cart
                                 </a>
                             </div>
                         </div>
                         <div class="img-box">
-                            <img src="~/images/@item.Image" alt="@item.Title">
+                            <img src="~/img/@item.Image" alt="@item.Title">
                         </div>
                         <div class="detail-box">
                             <h5>
@@ -85,6 +85,8 @@
             </div>
             </div>
             </section>
+            <hr />
+
        @*  </div>
         <div class="row mt-5">
             <div class="w-50 mx-auto text-center">

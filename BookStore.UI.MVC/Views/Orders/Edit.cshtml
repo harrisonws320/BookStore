@@ -1,13 +1,15 @@
 ﻿@model BookStore.DATA.EF.Models.Order
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Orders";
 }
 
-<h1>Edit</h1>
-
-<h4>Order</h4>
-<hr />
+<section class="product_section layout_padding gray-section py-4">
+    <div class="heading_container heading_center">
+        <h2><span><em>@ViewBag.Title</em></span></h2>
+    </div>
+    <hr />
+</section>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
@@ -51,7 +53,9 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" class="btn btn-info" asp-route-id="@Model?.OrderId">Edit</a>
+    <a asp-action="Index" class="btn btn-info">Back to Books</a>
+    <hr />
 </div>
 
 @section Scripts {
