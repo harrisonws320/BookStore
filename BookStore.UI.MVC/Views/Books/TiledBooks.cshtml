@@ -41,7 +41,7 @@
                         <option value="0">[Choose an Author]</option>
                     </select> *@
                     <input type="text" name="searchTerm" class="form-control text-center" value="@ViewBag.SearchTerm" placeholder="Search Books..." />
-                    <button type="submit" class="btn btn-primary d-block mx-auto w-50">GO!</button>
+                    <button type="submit" class="btn btn-info d-block mx-auto w-50">Search</button>
                     <a asp-action="TiledBooks" class="btn btn-secondary d-block mx-auto mt-2 w-50">Clear</a>
                 </form>
                 @if (ViewBag.NbrResults != null)
