@@ -29,6 +29,9 @@
     <link href="~/lib/animate/animate.min.css" rel="stylesheet">
     <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap.css" />
+
     <!-- Customized Bootstrap Stylesheet -->
     <link href="~/css/bootstrapmod.css" rel="stylesheet">
 
@@ -83,11 +86,32 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Genres" asp-action="Index">Genres</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Conditions" asp-action="Index">Conditions</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Types" asp-action="Index">Types</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Authors" asp-action="Index">Authors</a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Orders" asp-action="Index">Orders</a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Buyers" asp-action="Index">Buyers</a>
                         </li>
 
                         <li class="nav-item">
@@ -190,11 +214,12 @@
 
  @*    </div> *@ 
     <!-- Footer End -->
+    /lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js
 
-
-    
-
-    <!-- JavaScript Libraries -->
+    <!-- JQuery and JavaScript Libraries -->
+   @* <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+ *@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/wow/wow.min.js"></script>
@@ -202,13 +227,20 @@
     <script src="~/lib/waypoints/waypoints.min.js"></script>
     <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
 
+    <!-- JQuery Unobtrusive / Ajax -->
+    @*! Step 2 - add the jquery unobtrusive script *@
+    @* we found this cdn by searching 'jquery unobtrusive ajax cdn' *@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js" integrity="sha512-DedNBWPF0hLGUPNbCYfj8qjlEnNE92Fqn7xd3Sscfu7ipy7Zu33unHdugqRD3c4Vj7/yLv+slqZhMls/4Oc7Zg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <!-- Template Javascript -->
     <script src="~/js/main.js"></script>
+
+    @* @await RenderSectionAsync("scripts", required: false) *@
+
 
 
     @RenderSection("scripts", required: false)
 
 </body>
-
 </html>
 

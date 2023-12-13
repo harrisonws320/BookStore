@@ -1,7 +1,7 @@
-﻿@model BookStore.DATA.EF.Models.Author
+﻿@model BookStore.DATA.EF.Models.Buyer
 
 @{
-    ViewData["Title"] = "Edit Author";
+    ViewData["Title"] = "Edit Buyer";
 }
 
 <section class="product_section layout_padding gray-section py-4">
@@ -14,26 +14,21 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="AuthorId" />
+            <input type="hidden" asp-for="BuyerId" />
             <div class="form-group">
-                <label asp-for="AuthorFname" class="control-label"></label>
-                <input asp-for="AuthorFname" class="form-control" />
-                <span asp-validation-for="AuthorFname" class="text-danger"></span>
+                <label asp-for="BuyerFname" class="control-label"></label>
+                <input asp-for="BuyerFname" class="form-control" />
+                <span asp-validation-for="BuyerFname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AuthorLname" class="control-label"></label>
-                <input asp-for="AuthorLname" class="form-control" />
-                <span asp-validation-for="AuthorLname" class="text-danger"></span>
+                <label asp-for="BuyerLname" class="control-label"></label>
+                <input asp-for="BuyerLname" class="form-control" />
+                <span asp-validation-for="BuyerLname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Born" class="control-label"></label>
-                <input asp-for="Born" class="form-control" />
-                <span asp-validation-for="Born" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Died" class="control-label"></label>
-                <input asp-for="Died" class="form-control" />
-                <span asp-validation-for="Died" class="text-danger"></span>
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="City" class="control-label"></label>
@@ -46,29 +41,39 @@
                 <span asp-validation-for="State" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="PostalCode" class="control-label"></label>
+                <input asp-for="PostalCode" class="form-control" />
+                <span asp-validation-for="PostalCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Country" class="control-label"></label>
                 <input asp-for="Country" class="form-control" />
                 <span asp-validation-for="Country" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Religion" class="control-label"></label>
-                <input asp-for="Religion" class="form-control" />
-                <span asp-validation-for="Religion" class="text-danger"></span>
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Movement" class="control-label"></label>
-                <input asp-for="Movement" class="form-control" />
-                <span asp-validation-for="Movement" class="text-danger"></span>
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <br />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-info" />
-                <a asp-action="Index" class="btn btn-info">Back to Authors</a>
+                <a asp-action="Index" class="btn btn-info">Back to Buyers</a>
+                <hr />
             </div>
         </form>
     </div>
 </div>
 <hr />
+
+@* <div>
+    <a asp-action="Index">Back to List</a>
+</div>
+ *@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

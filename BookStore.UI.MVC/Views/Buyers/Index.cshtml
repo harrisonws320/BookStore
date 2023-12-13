@@ -1,23 +1,23 @@
-﻿@model IEnumerable<BookStore.DATA.EF.Models.Author>
+﻿@model IEnumerable<BookStore.DATA.EF.Models.Buyer>
 
 @{
-    ViewData["Authors"] = "About the Authors";
+    ViewData["Title"] = "Buyers";
 }
 
 <section class="container-fluid py-5">
     <div class="container">
         <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 600px;">
-            <h1 class="text-primary mb-3 bg-white border-radius 10"><span class="fw-light text-dark"><strong>About</strong></span>The Authors</h1>
+            <h1 class="text-primary mb-3 bg-white border-radius 10"><span class="fw-light text-dark"><strong>My</strong></span>Buyers</h1>
             @*             <h1 class="text-primary mb-3"><span class="fw-light text-dark">Books</span>For Sale</h1>
             *@        <p align="center">
 
                 @if (User.IsInRole("Admin"))
                 {
                     <span>
-                        <a asp-action="Create" class="btn btn-info">Add New Author</a>
+                        <a asp-action="Create" class="btn btn-info">Add New Buyer</a> 
                     </span>
                 }
-
+                
             </p>
         </div>
     </div>
@@ -26,16 +26,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.AuthorFname)
+                @Html.DisplayNameFor(model => model.BuyerFname)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AuthorLname)
+                @Html.DisplayNameFor(model => model.BuyerLname)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Born)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Died)
+                @Html.DisplayNameFor(model => model.Address)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.City)
@@ -44,13 +41,16 @@
                 @Html.DisplayNameFor(model => model.State)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.PostalCode)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Country)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Religion)
+                @Html.DisplayNameFor(model => model.Phone)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Movement)
+                @Html.DisplayNameFor(model => model.Email)
             </th>
             <th></th>
         </tr>
@@ -59,16 +59,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.AuthorFname)
+                @Html.DisplayFor(modelItem => item.BuyerFname)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AuthorLname)
+                @Html.DisplayFor(modelItem => item.BuyerLname)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Born)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Died)
+                @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.City)
@@ -77,18 +74,21 @@
                 @Html.DisplayFor(modelItem => item.State)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.PostalCode)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Country)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Religion)
+                @Html.DisplayFor(modelItem => item.Phone)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Movement)
+                @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                    <a asp-action="Edit" asp-route-id="@item.AuthorId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.AuthorId">Details</a> | 
-                <a asp-action="Delete" asp-route-id="@item.AuthorId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.BuyerId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.BuyerId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.BuyerId">Delete</a>
             </td>
         </tr>
 }

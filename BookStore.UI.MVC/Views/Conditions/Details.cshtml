@@ -1,0 +1,25 @@
+﻿@model BookStore.DATA.EF.Models.Condition
+
+@{
+    ViewData["Title"] = "Condition Details";
+}
+
+<section class="product_section layout_padding gray-section py-4">
+    <div class="heading_container heading_center">
+        <h2><span><em>@ViewBag.Title</em></span></h2>
+    </div>
+    <hr />
+</section>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ConditionDescription)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ConditionDescription)
+        </dd>
+    </dl>
+
+
+    <a asp-action="Edit" class="btn btn-info" asp-route-id="@Model?.ConditionId">Edit</a>
+    <a asp-action="Index" class="btn btn-info">Back to Conditions</a>
+    <hr />

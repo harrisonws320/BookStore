@@ -81,7 +81,7 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <p>
-                        <a asp-action="SubmitOrder" class="btn btn-primary">Submit Order</a>
+                        <a asp-action="SubmitOrder" class="btn btn-info">Submit Order</a>
                     </p>
                     <p>
                         <a asp-action="Checkout" class="btn btn-secondary">Checkout</a>
@@ -89,10 +89,11 @@
                 }
                 else
                 {
-                    <p>Please login to place this order.</p>
+                    <p>Please login to purchase this book.</p>
                 }
 
             </div>
         }
     
 </section>
+<hr />

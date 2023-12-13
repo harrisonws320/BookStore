@@ -19,18 +19,18 @@ namespace BookStore.DATA.EF.Models/*.Metadata*/
         public int AuthorId { get; set; }
 
         [MaxLength(15, ErrorMessage = "First Name cannot exceed 50 characters")]
-        [Display(Name = "Author First Name")]
+        [Display(Name = "First Name")]
         public string? AuthorFname { get; set; } 
 
         [Required(ErrorMessage = "Last Name is required")]
         [MaxLength(15, ErrorMessage = "Last Name cannot exceed 50 characters")]
-        [Display(Name = "Author Last Name")]
+        [Display(Name = "Last Name")]
         public string? AuthorLname { get; set; } = null!;
 
-        [Display(Name = "Born Year")]
+        [Display(Name = "Born")]
         public int? Born { get; set; }
 
-        [Display(Name = "Died Year")]
+        [Display(Name = "Died")]
         public int? Died { get; set; }
 
         [Display(Name = "City")]
@@ -46,11 +46,11 @@ namespace BookStore.DATA.EF.Models/*.Metadata*/
         [MaxLength(20, ErrorMessage = "Country cannot exceed 20 characters")]
         public string Country { get; set; } = null!;
 
-        [Display(Name = "Religion")]
+        [Display(Name = "Belief System")]
         [MaxLength(30, ErrorMessage = "Religion cannot exceed 30 characters")]
         public string? Religion { get; set; }
 
-        [Display(Name = "Movement")]
+        [Display(Name = "Ascribed Movement")]
         [MaxLength(30, ErrorMessage = "Movement cannot exceed 30 characters")]
         public string? Movement { get; set; }
 
@@ -67,10 +67,10 @@ namespace BookStore.DATA.EF.Models/*.Metadata*/
         [MaxLength(100, ErrorMessage = "Title cannot exceed 100 characters")]
         public string Title { get; set; } = null!;
 
-        [Display(Name = "Author ID")]
+        [Display(Name = "Author")]
         public int? AuthorId { get; set; }
 
-        [Display(Name = "Publication Date")]
+        [Display(Name = "Published")]
         public int PublicationDate { get; set; }
 
         [Display(Name = "Genre ID")]
@@ -95,7 +95,7 @@ namespace BookStore.DATA.EF.Models/*.Metadata*/
         [Range(0, (double)decimal.MaxValue)]
         [DisplayFormat(DataFormatString = "{0:c}", ApplyFormatInEditMode = false)]
         [Display(Name = "Price")]
-        //[DataType(DataType.Currency)]
+        [DataType(DataType.Currency)]
         [DefaultValue(0)]
         public decimal? BookPrice { get; set; }
 
@@ -111,7 +111,7 @@ namespace BookStore.DATA.EF.Models/*.Metadata*/
         public short? UnitsInStock { get; set; }
 
         [ForeignKey("AuthorId")]
-        [Display(Name = "Author")]
+       
         public virtual Author? Author { get; set; }
 
         [ForeignKey("ConditionId")]
@@ -156,10 +156,10 @@ namespace BookStore.DATA.EF.Models/*.Metadata*/
         //public string BuyerLname { get; set; } = null!;
 
         [Required(ErrorMessage = "Address is required")]
-        public string Address { get; set; } = null!;
+        public string? Address { get; set; }
 
         [Required(ErrorMessage = "City is required")]
-        public string City { get; set; } = null!;
+        public string? City { get; set; }
 
 
         [StringLength(2, MinimumLength = 2)]
@@ -167,16 +167,19 @@ namespace BookStore.DATA.EF.Models/*.Metadata*/
         public string? State { get; set; }
 
         [Required(ErrorMessage = "Postal Code is required")]
-        public string PostalCode { get; set; } = null!;
+        [DataType(DataType.PostalCode)]
+        public string? PostalCode { get; set; } 
 
         public string? Country { get; set; }
 
         [Required(ErrorMessage = "Phone is required")]
-        public string Phone { get; set; } = null!;
+        [DataType(DataType.PhoneNumber)]
+        [DisplayFormat(NullDisplayText = "[None]")]
+        public string? Phone { get; set; }
 
         [Required(ErrorMessage = "Email is required")]
         [EmailAddress(ErrorMessage = "Invalid email address")]
-        public string Email { get; set; } = null!;
+        public string? Email { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
     }
@@ -216,6 +219,8 @@ namespace BookStore.DATA.EF.Models/*.Metadata*/
         public string BuyerId { get; set; } = null!;
 
         [Required(ErrorMessage = "Order Date is required")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         [Display(Name = "Order Date")]
         public DateTime OrderDate { get; set; }
 
@@ -235,9 +240,10 @@ namespace BookStore.DATA.EF.Models/*.Metadata*/
 
         [Required(ErrorMessage = "Ship Zip Code is required")]
         [Display(Name = "Ship Zip Code")]
+        [DataType(DataType.PostalCode)]
         public string ShipPostalCode { get; set; } = null!;
 
-        [Required(ErrorMessage = "Buyer is required")]
+        [ForeignKey("BuyerId")]
         public virtual Buyer Buyer { get; set; } = null!;
 
         public virtual ICollection<OrderBook> OrderBooks { get; set; }
@@ -267,9 +273,11 @@ namespace BookStore.DATA.EF.Models/*.Metadata*/
         public string Country { get; set; } = null!;
 
         [Display(Name = "Zip Code")]
+        [DataType(DataType.PostalCode)]
         public string? PostalCode { get; set; }
 
         [Phone(ErrorMessage = "Invalid phone number")]
+        [DataType(DataType.PhoneNumber)]
         public string? Phone { get; set; }
 
         [EmailAddress(ErrorMessage = "Invalid email address")]

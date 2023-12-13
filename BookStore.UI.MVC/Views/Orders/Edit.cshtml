@@ -45,18 +45,20 @@
                 <input asp-for="ShipPostalCode" class="form-control" />
                 <span asp-validation-for="ShipPostalCode" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-info" />
+                <a asp-action="Index" class="btn btn-info">Back to Orders</a>
             </div>
         </form>
     </div>
 </div>
-
-<div>
+<hr />
+@* <div>
     <a asp-action="Edit" class="btn btn-info" asp-route-id="@Model?.OrderId">Edit</a>
-    <a asp-action="Index" class="btn btn-info">Back to Books</a>
+    <a asp-action="Index" class="btn btn-info">Back to Orders</a>
     <hr />
-</div>
+</div> *@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

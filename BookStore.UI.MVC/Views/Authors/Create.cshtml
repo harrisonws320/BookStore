@@ -1,13 +1,15 @@
 ﻿@model BookStore.DATA.EF.Models.Author
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Author";
 }
 
-<h1>Create</h1>
-
-<h4>Author</h4>
-<hr />
+<section class="product_section layout_padding gray-section py-4">
+    <div class="heading_container heading_center">
+        <h2><span><em>@ViewBag.Title</em></span></h2>
+    </div>
+    <hr />
+</section>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -57,16 +59,16 @@
                 <input asp-for="Movement" class="form-control" />
                 <span asp-validation-for="Movement" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-info" />
+                <a asp-action="Index" class="btn btn-info">Back to Authors</a>
             </div>
         </form>
     </div>
 </div>
+<hr />
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

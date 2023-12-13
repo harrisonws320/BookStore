@@ -12,7 +12,7 @@
 </section>
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="BookId" />
             <div class="form-group">
@@ -72,9 +72,20 @@
             </div>
             <div class="form-group">
                 <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" />
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Upload</span>
+                    </div>
+                    <div class="custom-file">
+                        <input asp-for="ImageFile" type="file" class="custom-file-input" />
+                        <label class="custom-file-label" asp-for="ImageFile">Choose file</label>
+                    </div>
+                </div>
+                @* <input asp-for="Image" class="form-control" /> *@
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
+
+
             <div class="form-group">
                 <label asp-for="UnitsInStock" class="control-label"></label>
                 <input asp-for="UnitsInStock" class="form-control" />

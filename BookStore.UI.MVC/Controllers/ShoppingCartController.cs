@@ -162,31 +162,31 @@ namespace BookStore.UI.MVC.Controllers
         }
 
         [Authorize]
-        //[HttpPost]
+
         public async Task<IActionResult> SubmitOrder()
         {
             #region Planning out Order Submission
-            //BIG PICTURE PLAN
-            //Create Order object -> then save to the DB
-            //  - OrderDate
-            //  - UserId
-            //  - ShipToName, ShipCity, ShipState, ShipZip --> this info needs to be pulled from the UserDetails record.
-            //  Alternatively, use a checkout screen and a Create Orders template.
-            //Add the record to _context
-            //Save DB changes
+            // BIG PICTURE PLAN
+            // Create Order object -> then save to the DB
+            // - OrderDate
+            // - UserId
+            // - ShipToName, ShipCity, ShipState, ShipZip --> this info needs to be pulled from the UserDetails record.
+            // Alternatively, use a checkout screen and a Create Orders template.
+            // Add the record to _context
+            // Save DB changes
 
-            //Create OrderProducts object for each item in the cart
-            //  - ProductId -> available from cart
-            //  - OrderId -> from Order object
-            //  - Qty -> available from cart
-            //  - ProductPrice -> available from cart
-            //Add the record to _context
-            //Save DB changes
+            // Create OrderProducts object for each item in the cart
+            // - ProductId -> available from cart
+            // - OrderId -> from Order object
+            // - Qty -> available from cart
+            // - ProductPrice -> available from cart
+            // Add the record to _context
+            // Save DB changes
             #endregion
-            //retrieve the current user's ID
+            // Retrieve the current user's ID
             var buyerId = (await _userManager.GetUserAsync(HttpContext.User))?.Id;
 
-            //retrieve the UserDetails for that user
+            // Retrieve the UserDetails for that user
             var ud = _context.Buyers.Find(buyerId);
             if (ud == null)
             {
@@ -200,7 +200,7 @@ namespace BookStore.UI.MVC.Controllers
                 ud = newUd;
             }
 
-            //Create the order object and assign values (either from user details or from your checkout form submission.)
+            // Create the order object and assign values (either from user details or from your checkout form submission.)
             Order o = new()
             {
                 OrderDate = DateTime.Now,
@@ -213,27 +213,121 @@ namespace BookStore.UI.MVC.Controllers
 
             _context.Add(o);
 
-            //Retrieve the session cart
+            // Retrieve the session cart
             var jsonCart = HttpContext.Session.GetString("cart");
-            var shoppingCart = JsonConvert.DeserializeObject<Dictionary<int, CartItemViewModel>>(jsonCart);
 
-            foreach (var item in shoppingCart.Values)
+            // Check if the cart is null or empty
+            if (string.IsNullOrEmpty(jsonCart))
             {
-                //create an OrderProduct object for each item in the cart
-                OrderBook ob = new OrderBook()
-                {
-                    OrderId = o.OrderId,
-                    BookId = item.Book.BookId,
-                    BookPrice = item.Book.BookPrice,
-                    Quantity = (short)item.Qty
-                };
-
-                o.OrderBooks.Add(ob);
+                // Handle the case when the cart is empty or not present
+                // You may want to redirect to the cart page or display an error message
+                return RedirectToAction("Index");
             }
-            await _context.SaveChangesAsync();
-            HttpContext.Session.Remove("cart");
-            return RedirectToAction("Index", "Orders");
+
+            try
+            {
+                // Deserialize the session cart data
+                var shoppingCart = JsonConvert.DeserializeObject<Dictionary<int, CartItemViewModel>>(jsonCart);
+
+                foreach (var item in shoppingCart.Values)
+                {
+                    // Create an OrderProduct object for each item in the cart
+                    OrderBook ob = new OrderBook()
+                    {
+                        OrderId = o.OrderId,
+                        BookId = item.Book.BookId,
+                        BookPrice = item.Book.BookPrice,
+                        Quantity = (short)item.Qty
+                    };
+
+                    o.OrderBooks.Add(ob);
+                }
+
+                await _context.SaveChangesAsync();
+                HttpContext.Session.Remove("cart");
+                return RedirectToAction("Index", "Orders");
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception (e.g., log it, redirect to an error page, etc.)
+                // For now, I'm just logging it to the console
+                Console.WriteLine($"Error during order submission: {ex.Message}");
+                return RedirectToAction("Index");
+            }
         }
+
+        //[HttpPost]
+        //public async Task<IActionResult> SubmitOrder()
+        //{
+        //    #region Planning out Order Submission
+        //    //BIG PICTURE PLAN
+        //    //Create Order object -> then save to the DB
+        //    //  - OrderDate
+        //    //  - UserId
+        //    //  - ShipToName, ShipCity, ShipState, ShipZip --> this info needs to be pulled from the UserDetails record.
+        //    //  Alternatively, use a checkout screen and a Create Orders template.
+        //    //Add the record to _context
+        //    //Save DB changes
+
+        //    //Create OrderProducts object for each item in the cart
+        //    //  - ProductId -> available from cart
+        //    //  - OrderId -> from Order object
+        //    //  - Qty -> available from cart
+        //    //  - ProductPrice -> available from cart
+        //    //Add the record to _context
+        //    //Save DB changes
+        //    #endregion
+        //    //retrieve the current user's ID
+        //    var buyerId = (await _userManager.GetUserAsync(HttpContext.User))?.Id;
+
+        //    //retrieve the UserDetails for that user
+        //    var ud = _context.Buyers.Find(buyerId);
+        //    if (ud == null)
+        //    {
+        //        var newUd = new Buyer()
+        //        {
+        //            BuyerId = buyerId,
+        //            BuyerFname = "Default",
+        //            BuyerLname = "Name",
+        //        };
+        //        _context.Add(newUd);
+        //        ud = newUd;
+        //    }
+
+        //    //Create the order object and assign values (either from user details or from your checkout form submission.)
+        //    Order o = new()
+        //    {
+        //        OrderDate = DateTime.Now,
+        //        BuyerId = buyerId,
+        //        ShipCity = ud?.City ?? "Not Given",
+        //        ShipToName = ud?.FullName ?? "Not Given",
+        //        ShipState = ud?.State ?? "NO",
+        //        ShipPostalCode = ud?.PostalCode ?? "[N/A]"
+        //    };
+
+        //    _context.Add(o);
+
+        //    //Retrieve the session cart
+        //    var jsonCart = HttpContext.Session.GetString("cart");
+        //    var shoppingCart = JsonConvert.DeserializeObject<Dictionary<int, CartItemViewModel>>(jsonCart);
+
+        //    foreach (var item in shoppingCart.Values)
+        //    {
+        //        //create an OrderProduct object for each item in the cart
+        //        OrderBook ob = new OrderBook()
+        //        {
+        //            OrderId = o.OrderId,
+        //            BookId = item.Book.BookId,
+        //            BookPrice = item.Book.BookPrice,
+        //            Quantity = (short)item.Qty
+        //        };
+
+        //        o.OrderBooks.Add(ob);
+        //    }
+        //    await _context.SaveChangesAsync();
+        //    HttpContext.Session.Remove("cart");
+        //    return RedirectToAction("Index", "Orders");
+        //}
 
         [Authorize]
         public IActionResult Checkout()

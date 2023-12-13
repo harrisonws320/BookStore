@@ -1,7 +1,7 @@
-﻿@model BookStore.DATA.EF.Models.Author
+﻿@model BookStore.DATA.EF.Models.Buyer
 
 @{
-    ViewData["Title"] = "Author Details";
+    ViewData["Title"] = "Delete Buyer";
 }
 
 <section class="product_section layout_padding gray-section py-4">
@@ -12,28 +12,22 @@
 </section>
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AuthorFname)
+            @Html.DisplayNameFor(model => model.BuyerFname)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AuthorFname)
+            @Html.DisplayFor(model => model.BuyerFname)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AuthorLname)
+            @Html.DisplayNameFor(model => model.BuyerLname)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AuthorLname)
+            @Html.DisplayFor(model => model.BuyerLname)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Born)
+            @Html.DisplayNameFor(model => model.Address)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Born)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Died)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Died)
+            @Html.DisplayFor(model => model.Address)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.City)
@@ -48,26 +42,36 @@
             @Html.DisplayFor(model => model.State)
         </dd>
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PostalCode)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PostalCode)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Country)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Country)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Religion)
+            @Html.DisplayNameFor(model => model.Phone)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Religion)
+            @Html.DisplayFor(model => model.Phone)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Movement)
+            @Html.DisplayNameFor(model => model.Email)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Movement)
+            @Html.DisplayFor(model => model.Email)
         </dd>
     </dl>
+    <br />
+<form asp-action="Delete">
+    <input type="hidden" asp-for="BuyerId" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a asp-action="Index" class="btn btn-info">Back to Buyers</a>
+</form>
 
+<hr />
 
-    <a asp-action="Edit" class="btn btn-info" asp-route-id="@Model?.AuthorId">Edit</a>
-    <a asp-action="Index" class="btn btn-info">Back to Authors</a>
-    <hr />

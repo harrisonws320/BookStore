@@ -1,0 +1,29 @@
+﻿@model BookStore.DATA.EF.Models.Genre
+
+@{
+    ViewData["Title"] = "Delete Genre";
+}
+
+<section class="product_section layout_padding gray-section py-4">
+    <div class="heading_container heading_center">
+        <h2><span><em>@ViewBag.Title</em></span></h2>
+    </div>
+    <hr />
+</section>
+<dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.GenreName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.GenreName)
+        </dd>
+    </dl>
+    <br />
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="GenreId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> 
+        <a asp-action="Index" class="btn btn-info">Back to Genres</a>
+    </form>
+    <hr />
+
+

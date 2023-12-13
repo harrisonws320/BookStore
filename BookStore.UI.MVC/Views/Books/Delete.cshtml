@@ -1,7 +1,7 @@
 ﻿@model BookStore.DATA.EF.Models.Book
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Delete Book";
 }
 
 <section class="product_section layout_padding gray-section py-4">
@@ -91,7 +91,7 @@
             @Html.DisplayFor(model => model.Type.TypeDescription)
         </dd>
     </dl>
-    
+    <br />
     <form asp-action="Delete">
         <input type="hidden" asp-for="BookId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> 

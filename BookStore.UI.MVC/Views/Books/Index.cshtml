@@ -87,10 +87,10 @@
                 @if (User.IsInRole("Admin"))
                 { 
                     <span>
-                        <a asp-action="Create">Add New Book</a> |
+                        <a asp-action="Create" class="btn btn-info">Add New Book</a> 
                     </span>
                 }
-                <a asp-action="TiledBooks">Tile View</a>
+                <a asp-action="TiledBooks" class="btn btn-info">Tile View</a>
         </p>
     </div>
     </div>
