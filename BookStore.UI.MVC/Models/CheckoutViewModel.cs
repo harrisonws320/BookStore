@@ -2,7 +2,7 @@
 {
     public class CheckoutViewModel
     {
-        public string BuyerId { get; set; } = null!;
+        //public string BuyerId { get; set; } = null!;
         public string BuyerFname { get; set; } = null!;
         public string BuyerLname { get; set; } = null!;
         public string Address { get; set; } = null!;

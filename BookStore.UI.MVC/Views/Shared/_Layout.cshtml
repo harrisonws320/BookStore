@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> signInManager
+
 
 
 <!DOCTYPE html>
@@ -31,7 +33,8 @@
 
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="~/css/bootstrap.css" />
-
+    <!-- bs4/jquery/datatables -->
+    <link href="https://cdn.datatables.net/v/bs4/jq-3.7.0/dt-1.13.7/datatables.min.css" rel="stylesheet">
     <!-- Customized Bootstrap Stylesheet -->
     <link href="~/css/bootstrapmod.css" rel="stylesheet">
 
@@ -61,7 +64,7 @@
                 </a> *@
 
 
-
+    <div class="hero-area">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -70,11 +73,11 @@
                 <h1 class="logo me-auto text-dark mb-0 me-4"><a href=@Url.Action("Index", "Home")><strong>Harrison's Used Books</strong></a></h1>
                 <hr>
 
-                @*  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+              @*    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button> *@
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+               @*  <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                        
                      <li class="nav-item">
@@ -119,13 +122,118 @@
                         </li>
                         <partial name="_LoginPartial" /> 
                     </ul>
-                </div>
+                </div> *@
+
+                <!--Class Code as reference Begin-->
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        @* <ul class="navbar-nav flex-grow-1"> *@
+
+                        @* <div class="collapse navbar-collapse" id="navbarSupportedContent"> *@
+                        <ul class="navbar-nav"> 
+                            <li class="nav-item active">
+                                <a class="nav-link" href="~/">Home @* <span class="sr-only">(current)</span> *@</a>
+                            </li>
+                            @* <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                    <span class="nav-label">Notes <span class="caret"></span></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-action="Identity" asp-controller="Notes">Identity</a></li>
+                                    <li>
+                                        <a asp-action="EntityFramework" asp-controller="Notes">Entity Framework (EF)</a>
+                                    </li>
+                                    <li><a asp-action="Metadata" asp-controller="Notes">Metadata</a></li>
+                                    <li><a asp-action="Security" asp-controller="Notes">Security</a></li>
+                                    <li><a asp-action="ViewCleanup" asp-controller="Notes">View Cleanup</a></li>
+                                </ul>
+                            </li> *@
+                            @if (User.IsInRole("Admin"))
+                            {
+                                @* <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                        Admin Menu
+                                    </a>
+                                      @*   <span class="nav-label">Admin Menu <span class="caret"></span></span> *@
+                                   @*  <span class="navbar-toggler-icon"></span> *@
+                                  @*   <a href="#"><span>Admin Menu</span> <i class="bi bi-chevron-down"></i></a> *@
+                                   @*  <ul class="dropdown-menu">
+                                        <li><a asp-action="ListUsers" asp-controller="Administration">Users</a></li>
+                                        <li><a asp-action="ListRoles" asp-controller="Administration">Roles</a></li>
+                                        <li><a asp-action="Index" asp-controller="Buyers">Buyers</a></li>
+                                        <li><a asp-action="Index" asp-controller="Genres">Genres</a></li>
+                                        <li><a asp-action="Index" asp-controller="Types">Types</a></li>
+                                        <li><a asp-action="Index" asp-controller="Conditions">Conditions</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-action="Index" asp-controller="Books">Books</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Authors" asp-action="Index">Authors</a>
+                                </li> *@
+
+                                <li class="nav-item dropdown">
+                                    <div class="dropdown show">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" id="adminDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Admin Menu
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="adminDropdown">
+                                            <a class="dropdown-item custom-dropdown-item" asp-action="ListUsers" asp-controller="Administration">Users</a>
+                                            <a class="dropdown-item custom-dropdown-item" asp-action="ListRoles" asp-controller="Administration">Roles</a>
+                                            <a class="dropdown-item custom-dropdown-item" asp-action="Index" asp-controller="Buyers">Buyers</a>
+                                            <a class="dropdown-item custom-dropdown-item" asp-action="Index" asp-controller="Genres">Genres</a>
+                                            <a class="dropdown-item custom-dropdown-item" asp-action="Index" asp-controller="Types">Types</a>
+                                            <a class="dropdown-item custom-dropdown-item" asp-action="Index" asp-controller="Conditions">Conditions</a>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-action="Index" asp-controller="Books">Books</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Authors" asp-action="Index">Authors</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-action="Index" asp-controller="Orders">Orders</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-action="Index" asp-controller="Books">Books</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Authors" asp-action="Index">Authors</a>
+                                </li>
+                           @*  } *@
+                          @*   @if (signInManager.IsSignedIn(User)) *@
+                            @* { *@
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" asp-action="Contact" asp-controller="Home">Contact</a>
+                            </li>
+                            }
+                         @*    <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Authors" asp-action="Index">Authors</a>
+                            </li> *@
+                            <partial name="_LoginPartial" />
+
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="ShoppingCart" asp-action="Index">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                <!--Class Code as reference End-->
             </div>
         </nav>
     </header>
     <!-- Navbar End -->
     <!-- End Header -->
-
+    </div>
 
     @RenderBody()
 
@@ -214,14 +322,13 @@
 
  @*    </div> *@ 
     <!-- Footer End -->
-    /lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js
+    @* /lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js *@
 
     <!-- JQuery and JavaScript Libraries -->
-   @* <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+   <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
- *@
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+   
     <script src="~/lib/wow/wow.min.js"></script>
     <script src="~/lib/easing/easing.min.js"></script>
     <script src="~/lib/waypoints/waypoints.min.js"></script>

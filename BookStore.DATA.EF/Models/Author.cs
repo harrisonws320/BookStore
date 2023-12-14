@@ -11,8 +11,8 @@ namespace BookStore.DATA.EF.Models
         }
 
         public int AuthorId { get; set; }
-        public string AuthorFname { get; set; } = null!;
-        public string? AuthorLname { get; set; }
+        public string? AuthorFname { get; set; } 
+        public string AuthorLname { get; set; } = null!;
         public int? Born { get; set; }
         public int? Died { get; set; }
         public string? City { get; set; }

@@ -117,42 +117,56 @@ namespace BookStore.UI.MVC.Controllers
             return View(genre);
         }
 
-        // GET: Genres/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        //! Step 9 - AjaxDelete()
+        [HttpDelete]
+        [AcceptVerbs("POST")]
+        public JsonResult AjaxDelete(int id)
         {
-            if (id == null || _context.Genres == null)
-            {
-                return NotFound();
-            }
+            var genre = _context.Genres.Find(id);
+            _context.Genres.Remove(genre);
+            _context.SaveChanges();
 
-            var genre = await _context.Genres
-                .FirstOrDefaultAsync(m => m.GenreId == id);
-            if (genre == null)
-            {
-                return NotFound();
-            }
+            string message = $"Deleted the category {genre.GenreName} from the database!";
+            return Json(new { id, message });
 
-            return View(genre);
         }
+
+        // GET: Genres/Delete/5
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null || _context.Genres == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var genre = await _context.Genres
+        //        .FirstOrDefaultAsync(m => m.GenreId == id);
+        //    if (genre == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(genre);
+        //}
 
         // POST: Genres/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Genres == null)
-            {
-                return Problem("Entity set 'BookStoreContext.Genres'  is null.");
-            }
-            var genre = await _context.Genres.FindAsync(id);
-            if (genre != null)
-            {
-                _context.Genres.Remove(genre);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    if (_context.Genres == null)
+        //    {
+        //        return Problem("Entity set 'BookStoreContext.Genres'  is null.");
+        //    }
+        //    var genre = await _context.Genres.FindAsync(id);
+        //    if (genre != null)
+        //    {
+        //        _context.Genres.Remove(genre);
+        //    }
+
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool GenreExists(int id)
         {

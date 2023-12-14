@@ -25,7 +25,7 @@ namespace BookStore.DATA.EF.Models/*.Metadata*/
         [Required(ErrorMessage = "Last Name is required")]
         [MaxLength(15, ErrorMessage = "Last Name cannot exceed 50 characters")]
         [Display(Name = "Last Name")]
-        public string? AuthorLname { get; set; } = null!;
+        public string AuthorLname { get; set; } = null!;
 
         [Display(Name = "Born")]
         public int? Born { get; set; }
@@ -213,6 +213,7 @@ namespace BookStore.DATA.EF.Models/*.Metadata*/
     public class OrderMetadata
     {
         [Key]
+        [Display(Name = "Order ID")]
         public int OrderId { get; set; }
 
         [Required(ErrorMessage = "Buyer ID is required")]
@@ -229,17 +230,19 @@ namespace BookStore.DATA.EF.Models/*.Metadata*/
         [Display(Name = "Ship To Name")]
         public string ShipToName { get; set; } = null!;
 
-        [Required(ErrorMessage = "Ship City is required")]
-        [MaxLength(50, ErrorMessage = "Ship City cannot exceed 50 characters")]
-        [Display(Name = "Ship City")]
+        [Required(ErrorMessage = "City is required")]
+        [MaxLength(50, ErrorMessage = "City cannot exceed 50 characters")]
+        [Display(Name = "City")]
+        [DisplayFormat(NullDisplayText = "[N/A]")]
         public string ShipCity { get; set; } = null!;
 
         [StringLength(2, MinimumLength = 2)]
-        [Display(Name = "Ship State")]
+        [Display(Name = "State")]
+        [DisplayFormat(NullDisplayText = "[N/A]")]
         public string? ShipState { get; set; }
 
-        [Required(ErrorMessage = "Ship Zip Code is required")]
-        [Display(Name = "Ship Zip Code")]
+        [Required(ErrorMessage = "Zip Code is required")]
+        [Display(Name = "Zip Code")]
         [DataType(DataType.PostalCode)]
         public string ShipPostalCode { get; set; } = null!;
 
