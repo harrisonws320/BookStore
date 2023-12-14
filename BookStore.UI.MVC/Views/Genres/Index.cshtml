@@ -36,49 +36,52 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
             <tr id="Genre-@item.GenreId">
-            <td>
-                @Html.DisplayFor(modelItem => item.GenreName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.GenreId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.GenreId">Details</a> |
-               @*  <a asp-action="Delete" asp-route-id="@item.GenreId">Delete</a> *@
-                    @*! Step 7 - delete button *@
-                    @* <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a> *@
-                    <a data-ajax="true"
-                       data-ajax-confirm="Are you sure you want to delete @item.GenreName?"
-                       href="~/Genres/AjaxDelete/@item.GenreId"
-                       data-ajax-failure="deleteFailed"
-                       data-ajax-success="deleteConfirmed"
-                       data-ajax-method="POST">
-                        Delete
-                    </a>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GenreName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.GenreId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.GenreId">Details</a> |
+                    <a href="#" onclick="deleteGenre(@item.GenreId); return false;">Delete</a>
+                </td>
+            </tr>
+        }
 
-            </td>
-        </tr>
-}
     </tbody>
 </table>
 
-@*! Step 5 - Add Section Steps *@
 @section Scripts {
-   <script>
-       //#region Step 8 - AJAX DELETE
-       function deleteConfirmed(response) {
-           //remove the row from the table.
-           let rowId = '#Genre-' + response.id;
-           console.log(rowId);
-           $('#GenresTable').find(rowId).remove();
+    <script>
+        function deleteGenre(genreId) {
+            if (confirm("Are you sure you want to delete this genre?")) {
+                $.ajax({
+                    url: '/Genres/AjaxDelete/' + genreId,
+                    type: 'DELETE',
+                    success: function (response) {
+                        deleteConfirmed(response);
+                    },
+                    error: function (response) {
+                        deleteFailed(response);
+                    }
+                });
+            }
+        }
 
-           //display the status message
-           $('#MessageContent').removeClass().addClass('alert alert-success text-center').text(response.message);
-       }
-       function deleteFailed(response) {
-           $('#MessageContent').removeClass().addClass('alert alert-danger text-center').text("Delete unsuccessful.");
-       }
+        function deleteConfirmed(response) {
+            // remove the row from the table.
+            let rowId = '#Genre-' + response.id;
+            console.log(rowId);
+            $('#GenresTable').find(rowId).remove();
 
+            // display the status message
+            $('#MessageContent').removeClass().addClass('alert alert-success text-center').text(response.message);
+        }
+
+        function deleteFailed(response) {
+            $('#MessageContent').removeClass().addClass('alert alert-danger text-center').text("Delete unsuccessful.");
+        }
     </script>
-
 }
